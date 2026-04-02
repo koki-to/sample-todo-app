@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_todo_app/app.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  /// WidgetsFlutterBinding.ensureInitializedは、
+  /// Flutterのバインディングを初期化するためのメソッドで、
+  /// runAppの前に非同期処理やプラグインの初期化を行う場合に使用します。
+  /// これを呼び出すことでFlutterの内部処理が正しく初期化され、
+  /// Firebaseなどの初期化処理を安全に実行できるようになります。
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: App()));
 }
